@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBuddy - AI Workout Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            background: #f9f9f9;
+            width: 420px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background: #eee;
+        }
+        button {
+            width: 100%;
+            background-color: #3182ce;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #2b6cb0;
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            border-radius: 6px;
+            display: none;
+        }
+        .result-box h3 {
+            margin-top: 0;
+            color: #2b6cb0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="title">💪 FitBuddy - AI Workout Generator</div>
+    
+    <div class="form-group">
+        <label>Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+    </div>
+
+    <div class="form-group">
+        <label>User ID:</label>
+        <input type="text" id="userId" placeholder="Enter User ID">
+    </div>
+
+    <div class="form-group">
+        <label>Age:</label>
+        <input type="number" id="age" placeholder="Enter Age">
+    </div>
+
+    <div class="form-group">
+        <label>Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter Weight in kg">
+    </div>
+
+    <div class="form-group">
+        <label>Fitness Goal:</label>
+        <input type="text" id="goal" placeholder="e.g., weight loss, flexibility">
+    </div>
+
+    <div class="form-group">
+        <label>Workout Intensity:</label>
+        <select id="intensity">
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+        </select>
+    </div>
+
+    <button onclick="generatePlan()">Generate Plan</button>
+
+    <div class="result-box" id="resultBox">
+        <h3 id="planTitle">Generated Workout Plan</h3>
+        <p id="planContent"></p>
+    </div>
+</div>
+
+<script>
+    async function generatePlan() {
+        let name = document.getElementById("name").value || "User";
+        let goal = document.getElementById("goal").value || "General Fitness";
+        let intensity = document.getElementById("intensity").value;
+        let weight = document.getElementById("weight").value || "70";
+
+        let resultBox = document.getElementById("resultBox");
+        let planTitle = document.getElementById("planTitle");
+        let planContent = document.getElementById("planContent");
+
+        resultBox.style.display = "block";
+        planTitle.innerText = `Workout Plan for ${name}`;
+        
+        planContent.innerHTML = `
+            <strong>Goal:</strong> ${goal} (${intensity} Intensity)<br><br>
+            <strong>🏋️ Plan Details:</strong><br>
+            • Day 1: Cardio (30 mins) & Core exercises<br>
+            • Day 2: Full Body Strength Training<br>
+            • Day 3: Active Recovery & Stretching<br><br>
+            <strong>🥗 Diet Tip:</strong> Stay hydrated and maintain a protein intake relative to ${weight}kg body weight.
+        `;
+    }
+</script>
+
+</body>
+</html>
